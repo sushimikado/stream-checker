@@ -47,28 +47,107 @@ export default async function handler(req, res) {
 
     // ④ HTMLで返す（UI簡易版）
     const html = `
-    <html>
-    <body style="font-family:sans-serif;padding:20px;">
-      ${
-        results.length === 0
-          ? "<p>現在配信中の参加者はいません</p>"
-          : results.map(v => `
-            <div style="margin-bottom:20px;">
-              <a href="${v.url}" target="_blank">
-                <img src="${v.thumbnail}" width="240"/>
-                <p>${v.title}</p>
-              </a>
-            </div>
-          `).join("")
-      }
-    </body>
-    </html>
-    `;
-
-    res.setHeader("Content-Type", "text/html");
-    res.status(200).send(html);
-
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+body {
+  margin: 0;
+  padding: 24px;
+  background: #0f0f0f;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  color: white;
 }
+
+h1 {
+  margin-bottom: 24px;
+  font-size: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #1c1c1c;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
+
+.thumb {
+  width: 100%;
+  display: block;
+}
+
+.content {
+  padding: 16px;
+}
+
+.live-badge {
+  display: inline-block;
+  background: #ff0000;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.title {
+  margin: 12px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.button {
+  display: inline-block;
+  background: white;
+  color: black;
+  padding: 10px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.empty {
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔴 配信中の参加者</h1>
+
+${
+results.length === 0
+? `<p class="empty">現在配信中の参加者はいません</p>`
+: `
+<div class="grid">
+${results.map(v => `
+<div class="card">
+  <img class="thumb" src="${v.thumbnail}">
+  <div class="content">
+    <span class="live-badge">🔴 LIVE</span>
+    <div class="title">${v.title}</div>
+    <a class="button" href="${v.url}" target="_blank">
+      視聴する
+    </a>
+  </div>
+</div>
+`).join("")}
+</div>
+`
+}
+
+</body>
+</html>
+`;
