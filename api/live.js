@@ -24,5 +24,26 @@ export default async function handler(req, res) {
     }
   }
 
-  res.status(200).json(results);
+  // 👇ここがポイント
+  const html = `
+    <html>
+      <body>
+        ${
+          results.length === 0
+            ? "<p>配信中なし</p>"
+            : results.map(v => `
+              <div>
+                <a href="${v.url}" target="_blank">
+                  <img src="${v.thumbnail}" width="200"/>
+                  <p>${v.title}</p>
+                </a>
+              </div>
+            `).join("")
+        }
+      </body>
+    </html>
+  `;
+
+  res.setHeader("Content-Type", "text/html");
+  res.status(200).send(html);
 }
