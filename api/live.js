@@ -64,7 +64,7 @@ export default async function handler(req, res) {
 body {
   margin: 0;
   padding: 24px;
-  background: #0f0f0f;
+  background: rgba(0,0,0,0);
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   color: white;
 }
@@ -81,7 +81,7 @@ h1 {
 }
 
 .card {
-  background: #1c1c1c;
+  background: #FFFFFF;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0,0,0,0.4);
