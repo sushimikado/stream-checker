@@ -4,6 +4,16 @@ export default async function handler(req, res) {
     const DATABASE_ID = process.env.NOTION_DATABASE_ID;
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
+    // 🔒 HTMLエスケープ関数（これが重要）
+    function escapeHtml(str) {
+      if (!str) return "";
+      return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
     // ① Notion DBからデータ取得
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
@@ -16,7 +26,7 @@ export default async function handler(req, res) {
 
     const notionData = await notionRes.json();
 
-    // ② チャンネルID抽出（安全版）
+    // ② チャンネルID抽出
     const channelIds = notionData.results
       .map(page => {
         const prop = page.properties["YouTubeChannelID"];
@@ -38,14 +48,14 @@ export default async function handler(req, res) {
         const v = data.items[0];
 
         results.push({
-          title: v.snippet.title,
-          url: `https://youtube.com/watch?v=${v.id.videoId}`,
-          thumbnail: v.snippet.thumbnails.medium.url
+          title: v.snippet?.title || "",
+          url: `https://youtube.com/watch?v=${v.id?.videoId || ""}`,
+          thumbnail: v.snippet?.thumbnails?.medium?.url || ""
         });
       }
     }
 
-    // ④ HTMLで返す（UI簡易版）
+    // ④ HTML生成（安全版）
     const html = `
 <html>
 <head>
@@ -132,18 +142,24 @@ results.length === 0
 ? `<p class="empty">現在配信中の参加者はいません</p>`
 : `
 <div class="grid">
-${results.map(v => `
+${results.map(v => {
+  const title = escapeHtml(v.title);
+  const thumb = v.thumbnail;
+  const url = v.url;
+
+  return `
 <div class="card">
-  <img class="thumb" src="${v.thumbnail}">
+  <img class="thumb" src="${thumb}">
   <div class="content">
     <span class="live-badge">🔴 LIVE</span>
-    <div class="title">${v.title}</div>
-    <a class="button" href="${v.url}" target="_blank">
+    <div class="title">${title}</div>
+    <a class="button" href="${url}" target="_blank">
       視聴する
     </a>
   </div>
 </div>
-`).join("")}
+`;
+}).join("")}
 </div>
 `
 }
@@ -151,3 +167,11 @@ ${results.map(v => `
 </body>
 </html>
 `;
+
+    res.setHeader("Content-Type", "text/html");
+    res.status(200).send(html);
+
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+}
