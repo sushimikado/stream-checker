@@ -66,7 +66,7 @@ body {
   padding: 24px;
   background: rgba(0,0,0,0);
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  color: white;
+  color: black;
 }
 
 h1 {
