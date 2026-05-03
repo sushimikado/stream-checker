@@ -1,14 +1,30 @@
 export default async function handler(req, res) {
-  const API_KEY = process.env.YOUTUBE_API_KEY;
+  const NOTION_TOKEN = process.env.NOTION_TOKEN;
+  const DATABASE_ID = process.env.NOTION_DATABASE_ID;
+  const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
-  const channelIds = [
-    "UCHgOE-uWIbs5ngLWu7KhuSw"
-  ];
+  // ① Notionから参加者取得
+  const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${NOTION_TOKEN}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2022-06-28"
+    }
+  });
+
+  const notionData = await notionRes.json();
+
+  // ② チャンネルID抽出
+  const channelIds = notionData.results
+    .map(page => page.properties.YouTubeChannelID?.rich_text?.[0]?.plain_text)
+    .filter(Boolean);
 
   const results = [];
 
+  // ③ YouTubeライブチェック
   for (const channelId of channelIds) {
-    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${API_KEY}`;
+    const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`;
 
     const r = await fetch(url);
     const data = await r.json();
@@ -24,17 +40,17 @@ export default async function handler(req, res) {
     }
   }
 
-  // 👇ここがポイント
+  // ④ HTMLで返す（iframe用）
   const html = `
     <html>
-      <body>
+      <body style="font-family:sans-serif;">
         ${
           results.length === 0
-            ? "<p>配信中なし</p>"
+            ? "<p>現在配信中の参加者はいません</p>"
             : results.map(v => `
-              <div>
+              <div style="margin-bottom:20px;">
                 <a href="${v.url}" target="_blank">
-                  <img src="${v.thumbnail}" width="200"/>
+                  <img src="${v.thumbnail}" width="240"/>
                   <p>${v.title}</p>
                 </a>
               </div>
