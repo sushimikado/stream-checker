@@ -1,5 +1,19 @@
 export default async function handler(req, res) {
-  return res.status(200).json({
-    token: process.env.NOTION_TOKEN
-  });
+  try {
+    const NOTION_TOKEN = process.env.NOTION_TOKEN;
+
+    const r = await fetch("https://api.notion.com/v1/users/me", {
+      headers: {
+        "Authorization": `Bearer ${NOTION_TOKEN}`,
+        "Notion-Version": "2022-06-28"
+      }
+    });
+
+    const data = await r.json();
+
+    return res.status(200).json(data);
+
+  } catch (e) {
+    return res.status(500).json({ error: e.message });
+  }
 }
