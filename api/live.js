@@ -4,7 +4,6 @@ export default async function handler(req, res) {
     const DATABASE_ID = process.env.NOTION_DATABASE_ID;
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 
-    // 🔒 HTMLエスケープ関数（これが重要）
     function escapeHtml(str) {
       if (!str) return "";
       return str
@@ -14,7 +13,6 @@ export default async function handler(req, res) {
         .replace(/"/g, "&quot;");
     }
 
-    // ① Notion DBからデータ取得
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
       headers: {
@@ -26,7 +24,6 @@ export default async function handler(req, res) {
 
     const notionData = await notionRes.json();
 
-    // ② チャンネルID抽出
     const channelIds = notionData.results
       .map(page => {
         const prop = page.properties["YouTubeChannelID"];
@@ -37,7 +34,6 @@ export default async function handler(req, res) {
 
     const results = [];
 
-    // ③ YouTubeライブチェック
     for (const channelId of channelIds) {
       const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`;
 
@@ -55,7 +51,6 @@ export default async function handler(req, res) {
       }
     }
 
-    // ④ HTML生成（安全版）
     const html = `
 <html>
 <head>
@@ -63,79 +58,91 @@ export default async function handler(req, res) {
 <style>
 body {
   margin: 0;
-  padding: 24px;
-  background: rgba(0,0,0,0);
+  padding: 16px;
+  background: transparent; /* ← ここ重要 */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  color: black;
 }
 
-h1 {
-  margin-bottom: 24px;
-  font-size: 20px;
+/* コンテナ */
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
+/* グリッド */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
+/* カード */
 .card {
-  background: #FFFFFF;
-  border-radius: 16px;
+  background: white;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-  transition: transform 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
 }
 
+/* サムネ */
 .thumb {
   width: 100%;
   display: block;
 }
 
+/* コンテンツ */
 .content {
   padding: 16px;
 }
 
+/* LIVEバッジ */
 .live-badge {
   display: inline-block;
-  background: #ff0000;
+  background: #ff3b30;
+  color: white;
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 600;
 }
 
+/* タイトル */
 .title {
-  margin: 12px 0;
-  font-size: 15px;
-  line-height: 1.5;
+  margin: 10px 0 14px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
 }
 
+/* ボタン */
 .button {
   display: inline-block;
-  background: white;
-  color: black;
-  padding: 10px 14px;
+  background: #111;
+  color: white;
+  padding: 8px 14px;
   border-radius: 10px;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
 }
 
+/* 空状態 */
 .empty {
-  opacity: 0.6;
+  color: #666;
+  font-size: 14px;
 }
 </style>
 </head>
 
 <body>
 
-<h1>🔴 配信中の参加者</h1>
+<div class="wrapper">
 
 ${
 results.length === 0
@@ -144,16 +151,14 @@ results.length === 0
 <div class="grid">
 ${results.map(v => {
   const title = escapeHtml(v.title);
-  const thumb = v.thumbnail;
-  const url = v.url;
 
   return `
 <div class="card">
-  <img class="thumb" src="${thumb}">
+  <img class="thumb" src="${v.thumbnail}">
   <div class="content">
-    <span class="live-badge">🔴 LIVE</span>
+    <span class="live-badge">LIVE</span>
     <div class="title">${title}</div>
-    <a class="button" href="${url}" target="_blank">
+    <a class="button" href="${v.url}" target="_blank">
       視聴する
     </a>
   </div>
@@ -163,6 +168,8 @@ ${results.map(v => {
 </div>
 `
 }
+
+</div>
 
 </body>
 </html>
