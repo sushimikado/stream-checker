@@ -167,7 +167,7 @@ h1 {
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 6px rgba(0,0,0,0.08);
 }
 
 /* 画像ラッパー（3:2固定） */
