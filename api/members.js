@@ -153,7 +153,7 @@ h1 {
 }
 
 .card-bottom {
-  padding: 16px;
+  padding: 12px 16px;
   text-align: left;
 }
 
@@ -190,7 +190,7 @@ h1 {
 /* 個別サイズ */
 .icon-img.x {
   fill: #523f31;
-  margin: 0px 3px 0px 0px;
+  margin: -2px 6px 0px 0px;
   height: 15pt;
 }
 
