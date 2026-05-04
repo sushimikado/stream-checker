@@ -37,7 +37,11 @@ export default async function handler(req, res) {
 
     // Xアイコン
     function getXIcon() {
-      return `<img class="icon-img x" src="/icons/x.svg">`;
+      return `
+      <svg class="icon-svg x" viewBox="0 0 24 24">
+          <path fill="currentColor" class="st0" d="M714.16,519.28L1160.89,0h-105.86l-387.89,450.89L357.33,0H0l468.49,681.82L0,1226.37h105.87l409.63-476.15,327.18,476.15h357.33l-485.86-707.09h.03ZM569.16,687.83l-47.47-67.89L144.01,79.69h162.6l304.8,435.99,47.47,67.89,396.2,566.72h-162.6l-323.31-462.45v-.03Z"/>
+      </svg>
+      `;
     }
 
     // 役職色
@@ -198,6 +202,10 @@ h1 {
 
 /* アイコン */
 /* 共通 */
+.icon-svg {
+  fill: #00ff00
+}
+
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
@@ -205,9 +213,8 @@ h1 {
 }
 
 /* 個別サイズ */
-.icon-img.x {
+.icon-svg.x {
   height: 15pt;
-  fill: #00ff00;
 }
 
 .icon-img.youtube {
