@@ -122,12 +122,15 @@ h1 {
 
 .name {
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .yomi {
   font-size: 12px;
   color: #666;
+}
+
+.links {
+  margin-top: 10px;
 }
 
 .roles {
@@ -141,10 +144,6 @@ h1 {
   border-radius: 999px;
   font-size: 11px;
   margin: 2px;
-}
-
-.links {
-  margin-top: 10px;
 }
 
 /* アイコン */
@@ -184,11 +183,7 @@ ${members.map(m => `
   <div class="card-bottom">
     <div class="name">${escapeHtml(m.name)}</div>
     <div class="yomi">${escapeHtml(m.yomi)}</div>
-
-    <div class="roles">
-      ${m.roles.map(r => `<span class="role">${escapeHtml(r)}</span>`).join("")}
-    </div>
-
+    
     <div class="links">
       ${m.x ? `<a class="icon" href="${m.x}" target="_blank">${getXIcon()}</a>` : ""}
       ${m.main ? `<a class="icon" href="${m.main}" target="_blank">${getPlatformIcon(m.main)}</a>` : ""}
@@ -200,6 +195,10 @@ ${members.map(m => `
         <a href="${m.other}" target="_blank">${escapeHtml(m.other)}</a>
       </div>
     ` : ""}
+    
+    <div class="roles">
+      ${m.roles.map(r => `<span class="role">${escapeHtml(r)}</span>`).join("")}
+    </div>
   </div>
 </div>
 `).join("")}
