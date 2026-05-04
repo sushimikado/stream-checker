@@ -1,11 +1,4 @@
-const html = `
-<div class="wrapper">
-${
-results.length === 0
-? `<p class="empty">現在配信中の参加者はいません</p>`
-: `
-<div class="grid">
-${results.map(v => {
+const cards = results.map(v => {
   const title = escapeHtml(v.title);
 
   return `
@@ -19,9 +12,14 @@ ${results.map(v => {
   </div>
 </a>
 `;
-}).join("")}
-</div>
-`
+}).join("");
+
+const html = `
+<div class="wrapper">
+${
+results.length === 0
+? `<p class="empty">現在配信中の参加者はいません</p>`
+: `<div class="grid">${cards}</div>`
 }
 </div>
 `;
