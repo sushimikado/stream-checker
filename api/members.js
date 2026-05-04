@@ -216,7 +216,7 @@ h1 {
   flex-wrap: wrap;
   gap: 4px;
   min-height: 24px;
-  padding: 0px 0px 0px -6px;
+  margin: 0px 0px 0px -6px;
 }
 
 .role {
