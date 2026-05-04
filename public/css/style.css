@@ -1,58 +1,83 @@
-/* ===============================
-   ベース
-=============================== */
-
 body {
   margin: 0;
-  font-family: "Noto Sans JP", sans-serif;
+  padding: 24px;
   background: transparent;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #523f31;
 }
 
-.container {
-  padding: 24px;
+/* コンテナ */
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* ===============================
-   見出し
-=============================== */
-
-.section-title {
-  margin-bottom: 16px;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-/* ===============================
-   グリッド（共通化）
-=============================== */
-
+/* グリッド（membersと統一） */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
 }
 
-/* ===============================
-   カード（後で共通化しやすい）
-=============================== */
-
+/* カード（membersと統一） */
 .card {
   background: white;
-  border-radius: 8px;
+  border-radius: 8px; /* ← ここ変更 */
   overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-
-/* ===============================
-   アイコン（共通制御）
-=============================== */
-
-.icon-svg {
-  fill: currentColor;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08); /* ← 同じ */
   transition: transform 0.15s ease;
 }
 
-.icon:hover .icon-svg {
-  transform: scale(1.2);
+.card:hover {
+  transform: translateY(-4px);
+}
+
+/* サムネ（membersのavatarに寄せる） */
+.thumb {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+/* コンテンツ */
+.content {
+  padding: 12px 16px; /* ← membersと同じ */
+}
+
+/* LIVEバッジ（色だけ少し調整） */
+.live-badge {
+  display: inline-block;
+  background: #e53935; /* ← membersのredに寄せる */
+  color: white;
+  padding: 2px 10px 4px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* タイトル */
+.title {
+  margin: 10px 0 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #523f31;
+}
+
+/* ボタン */
+.button {
+  display: inline-block;
+  background: #523f31;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* 空状態 */
+.empty {
+  color: #666;
+  font-size: 14px;
 }
