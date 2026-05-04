@@ -171,15 +171,19 @@ h1 {
   margin-bottom: 10px;
 }
 
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 24px;
+}
+
 .role {
   display: inline-flex;
-  flex-wrap: wrap;
   align-items: center;
-  padding: 1px 8px 3px 8px;
+  padding: 3px 8px;
   border-radius: 999px;
   font-size: 11px;
-  margin: 0px 4px 0px -2px;
-  color: white;
 }
 
 /* アイコン */
