@@ -141,14 +141,15 @@ function getPlatformIcon(url) {
 
 <style>
 :root {
-  --icon-size: 20px;
+  --text-color-1: #523f31;
+  --text-color-2: #a1816a;
 }
 
 body {
   margin: 0;
   padding: 24px;
   font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #523f31;
+  color: var(--text-color-1);
   background: rgba(0,0,0,0);
 }
 
@@ -184,7 +185,7 @@ h1 {
 }
 
 .card-bottom {
-  padding: 12px 16px;
+  padding: 12px 16px 16px 16px;
   text-align: left;
 }
 
@@ -195,7 +196,7 @@ h1 {
 .yomi {
   font-size: 12px;
   font-weight: 500;
-  color: #666;
+  color: var(--text-color-2);
 }
 
 .links {
@@ -260,9 +261,14 @@ h1 {
 }
 
 .other a {
-  color: #555;
+  color: var(--text-color-1);
   text-decoration: underline;
 }
+
+.other a:hover {
+  color: var(--text-color-2);
+}
+
 </style>
 </head>
 
