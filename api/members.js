@@ -12,6 +12,22 @@ export default async function handler(req, res) {
         .replace(/"/g, "&quot;");
     }
 
+    // 🔽 プラットフォーム判定
+    function getPlatformIcon(url) {
+      if (!url) return "";
+
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        return "▶"; // YouTube
+      }
+      if (url.includes("twitch.tv")) {
+        return "🎮"; // Twitch
+      }
+      if (url.includes("tiktok.com")) {
+        return "♪"; // TikTok
+      }
+      return "🔗";
+    }
+
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
       headers: {
@@ -29,9 +45,11 @@ export default async function handler(req, res) {
       const name = p["名前"]?.title?.[0]?.plain_text || "";
       const yomi = p["よみがな"]?.rich_text?.[0]?.plain_text || "";
 
+      const order = p["管理用"]?.number ?? 9999;
+
       const x = p["X"]?.url || "";
-      const youtube = p["配信"]?.url || "";
-      const twitch = p["配信サブ"]?.url || "";
+      const main = p["配信"]?.url || "";
+      const sub = p["配信サブ"]?.url || "";
 
       const roles = p["役職"]?.multi_select?.map(r => r.name) || [];
 
@@ -41,7 +59,13 @@ export default async function handler(req, res) {
         image = file.type === "external" ? file.external.url : file.file.url;
       }
 
-      return { name, yomi, x, youtube, twitch, roles, image };
+      return { name, yomi, order, x, main, sub, roles, image };
+    });
+
+    // 🔽 並び替え（重要）
+    members.sort((a, b) => {
+      if (a.order !== b.order) return a.order - b.order;
+      return a.yomi.localeCompare(b.yomi, "ja");
     });
 
     const html = `
@@ -134,8 +158,8 @@ ${members.map(m => `
 
   <div class="links">
     ${m.x ? `<a class="icon" href="${m.x}" target="_blank">𝕏</a>` : ""}
-    ${m.youtube ? `<a class="icon" href="${m.youtube}" target="_blank">▶</a>` : ""}
-    ${m.twitch ? `<a class="icon" href="${m.twitch}" target="_blank">🎮</a>` : ""}
+    ${m.main ? `<a class="icon" href="${m.main}" target="_blank">${getPlatformIcon(m.main)}</a>` : ""}
+    ${m.sub ? `<a class="icon" href="${m.sub}" target="_blank">${getPlatformIcon(m.sub)}</a>` : ""}
   </div>
 </div>
 `).join("")}
