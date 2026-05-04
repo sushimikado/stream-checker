@@ -84,7 +84,6 @@ function getPlatformIcon(url) {
 
       return `
         background: ${bg};
-        color: white;
       `;
     }
     
