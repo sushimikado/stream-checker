@@ -13,20 +13,25 @@ export default async function handler(req, res) {
     }
 
     // 🔽 プラットフォーム判定
-    function getPlatformIcon(url) {
-      if (!url) return "";
+function getPlatformIcon(url) {
+  if (!url) return "";
 
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        return "▶"; // YouTube
-      }
-      if (url.includes("twitch.tv")) {
-        return "🎮"; // Twitch
-      }
-      if (url.includes("tiktok.com")) {
-        return "♪"; // TikTok
-      }
-      return "🔗";
-    }
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    return `<img src="/icons/youtube.svg" width="20">`;
+  }
+  if (url.includes("twitch.tv")) {
+    return `<img src="/icons/twitch.svg" width="20">`;
+  }
+  if (url.includes("tiktok.com")) {
+    return `<img src="/icons/tiktok.svg" width="20">`;
+  }
+
+  return `<img src="/icons/link.svg" width="20">`;
+}
+
+function getXIcon() {
+  return `<img src="/icons/x.svg" width="20">`;
+}
 
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
@@ -131,11 +136,15 @@ h1 {
   margin-top: 10px;
 }
 
-.icon {
-  display: inline-block;
-  margin: 0 6px;
-  text-decoration: none;
-  font-size: 18px;
+.icon img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  transition: transform 0.15s ease;
+}
+
+.icon:hover img {
+  transform: scale(1.15);
 }
 </style>
 </head>
