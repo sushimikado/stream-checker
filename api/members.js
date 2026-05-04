@@ -113,6 +113,13 @@ h1 {
   border-radius: 0px;
 }
 
+.card-bottom {
+  width: 100%;
+  border-radius: 0px;
+  padding: 16px;
+  text-align: left;
+}
+
 .name {
   font-weight: bold;
   margin-top: 10px;
@@ -174,25 +181,26 @@ h1 {
 ${members.map(m => `
 <div class="card">
   ${m.image ? `<img class="avatar" src="${m.image}">` : ""}
+  <div class="card-bottom">
+    <div class="name">${escapeHtml(m.name)}</div>
+    <div class="yomi">${escapeHtml(m.yomi)}</div>
 
-  <div class="name">${escapeHtml(m.name)}</div>
-  <div class="yomi">${escapeHtml(m.yomi)}</div>
-
-  <div class="roles">
-    ${m.roles.map(r => `<span class="role">${escapeHtml(r)}</span>`).join("")}
-  </div>
-
-  <div class="links">
-    ${m.x ? `<a class="icon" href="${m.x}" target="_blank">${getXIcon()}</a>` : ""}
-    ${m.main ? `<a class="icon" href="${m.main}" target="_blank">${getPlatformIcon(m.main)}</a>` : ""}
-    ${m.sub ? `<a class="icon" href="${m.sub}" target="_blank">${getPlatformIcon(m.sub)}</a>` : ""}
-  </div>
-
-  ${m.other ? `
-    <div class="other">
-      <a href="${m.other}" target="_blank">${escapeHtml(m.other)}</a>
+    <div class="roles">
+      ${m.roles.map(r => `<span class="role">${escapeHtml(r)}</span>`).join("")}
     </div>
-  ` : ""}
+
+    <div class="links">
+      ${m.x ? `<a class="icon" href="${m.x}" target="_blank">${getXIcon()}</a>` : ""}
+      ${m.main ? `<a class="icon" href="${m.main}" target="_blank">${getPlatformIcon(m.main)}</a>` : ""}
+      ${m.sub ? `<a class="icon" href="${m.sub}" target="_blank">${getPlatformIcon(m.sub)}</a>` : ""}
+    </div>
+
+    ${m.other ? `
+      <div class="other">
+        <a href="${m.other}" target="_blank">${escapeHtml(m.other)}</a>
+      </div>
+    ` : ""}
+  </div>
 </div>
 `).join("")}
 </div>
