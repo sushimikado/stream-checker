@@ -175,7 +175,7 @@ h1 {
 .links {
   margin: 10px 0px;
   height: 30px;
-  gap: 4px;
+  gap: 8px;
   vertical-align: middle;
 }
 
