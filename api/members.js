@@ -13,25 +13,26 @@ export default async function handler(req, res) {
     }
 
     // 🔽 プラットフォーム判定
-function getPlatformIcon(url) {
-  if (!url) return "";
+    function getPlatformIcon(url) {
+      if (!url) return "";
 
-  if (url.includes("youtube.com") || url.includes("youtu.be")) {
-    return `<img src="/icons/youtube.svg" width="20">`;
-  }
-  if (url.includes("twitch.tv")) {
-    return `<img src="/icons/twitch.svg" width="20">`;
-  }
-  if (url.includes("tiktok.com")) {
-    return `<img src="/icons/tiktok.svg" width="20">`;
-  }
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        return `<img src="/icons/youtube.svg">`;
+      }
+      if (url.includes("twitch.tv")) {
+        return `<img src="/icons/twitch.svg">`;
+      }
+      if (url.includes("tiktok.com")) {
+        return `<img src="/icons/tiktok.svg">`;
+      }
 
-  return `<img src="/icons/link.svg" width="20">`;
-}
+      return `<img src="/icons/link.svg">`;
+    }
 
-function getXIcon() {
-  return `<img src="/icons/x.svg" width="20">`;
-}
+    // 🔽 Xアイコン（←これを使う）
+    function getXIcon() {
+      return `<img src="/icons/x.svg">`;
+    }
 
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
@@ -56,6 +57,9 @@ function getXIcon() {
       const main = p["配信"]?.url || "";
       const sub = p["配信サブ"]?.url || "";
 
+      // ✅ 追加
+      const other = p["その他URL"]?.url || "";
+
       const roles = p["役職"]?.multi_select?.map(r => r.name) || [];
 
       let image = "";
@@ -64,10 +68,10 @@ function getXIcon() {
         image = file.type === "external" ? file.external.url : file.file.url;
       }
 
-      return { name, yomi, order, x, main, sub, roles, image };
+      return { name, yomi, order, x, main, sub, other, roles, image };
     });
 
-    // 🔽 並び替え（重要）
+    // 🔽 並び替え
     members.sort((a, b) => {
       if (a.order !== b.order) return a.order - b.order;
       return a.yomi.localeCompare(b.yomi, "ja");
@@ -136,6 +140,7 @@ h1 {
   margin-top: 10px;
 }
 
+/* アイコン */
 .icon img {
   width: 20px;
   height: 20px;
@@ -145,6 +150,18 @@ h1 {
 
 .icon:hover img {
   transform: scale(1.15);
+}
+
+/* その他URL */
+.other {
+  margin-top: 8px;
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.other a {
+  color: #555;
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -166,10 +183,16 @@ ${members.map(m => `
   </div>
 
   <div class="links">
-    ${m.x ? `<a class="icon" href="${m.x}" target="_blank">𝕏</a>` : ""}
+    ${m.x ? `<a class="icon" href="${m.x}" target="_blank">${getXIcon()}</a>` : ""}
     ${m.main ? `<a class="icon" href="${m.main}" target="_blank">${getPlatformIcon(m.main)}</a>` : ""}
     ${m.sub ? `<a class="icon" href="${m.sub}" target="_blank">${getPlatformIcon(m.sub)}</a>` : ""}
   </div>
+
+  ${m.other ? `
+    <div class="other">
+      <a href="${m.other}" target="_blank">${escapeHtml(m.other)}</a>
+    </div>
+  ` : ""}
 </div>
 `).join("")}
 </div>
