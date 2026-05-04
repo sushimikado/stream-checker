@@ -1,8 +1,132 @@
-/* ===== グリッド（これが無いと縦に並ぶ） ===== */
+:root {
+  --text-color-1: #523f31;
+  --text-color-2: #755a46;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text-color-1);
+  background: rgba(0,0,0,0);
+}
+
 .grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* ===== メンバー表 ===== */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+}
+
+/* 画像ラッパー */
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+/* 画像トリミング */
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-bottom {
+  padding: 12px 16px 16px 16px;
+  text-align: left;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.yomi {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-color-2);
+}
+
+.links {
+  margin: 12px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.roles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-height: 24px;
+  margin: 0px 0px 0px -2px;
+}
+
+.role {
+  font-weight: 500;
+  color: var(--text-color-1);
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75px 10px 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  border: 1px solid var(--text-color-1);
+}
+
+/* アイコン */
+/* 共通 */
+.icon-svg {
+  color: #523f31;
+  transition: transform 0.15s ease;
+}
+
+/* 個別 */
+.icon-svg.x {
+  height: 15pt;
+}
+
+.icon-svg.youtube {
+  height: 12pt;
+}
+
+.icon-svg.twitch {
+  height: 18pt;
+}
+
+.icon-svg.tiktok {
+  height: 18pt;
+}
+
+/* hover */
+.icon:hover .icon-svg {
+  transform: scale(1.20);
+}
+
+/* その他URL */
+.other {
+  margin-bottom: 14px;
+  font-size: 12px;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  transition: transform 0.15s ease;
+}
+
+.other a {
+  color: var(--text-color-1);
+  text-decoration: underline;
+}
+
+.other a:hover {
+  color: var(--text-color-2);
 }
 
 /* ===== wrapperも統一 ===== */
@@ -16,16 +140,6 @@
   text-decoration: none;
   color: inherit;
   display: block;
-}
-
-/* ===== カード共通（membersと完全一致） ===== */
-.card {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
 }
 
 /* hoverはLIVEだけ */
