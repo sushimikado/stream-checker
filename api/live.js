@@ -67,7 +67,15 @@ export default async function handler(req, res) {
 `;
     }).join("");
 
-    const html = `
+const html = `
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
 <div class="wrapper">
 ${
   results.length === 0
@@ -75,12 +83,7 @@ ${
     : `<div class="grid">${cards}</div>`
 }
 </div>
+
+</body>
+</html>
 `;
-
-    res.setHeader("Content-Type", "text/html");
-    res.status(200).send(html);
-
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
-}
