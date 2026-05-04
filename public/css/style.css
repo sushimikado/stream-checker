@@ -35,7 +35,7 @@ body {
 /* サムネ（membersのavatarに寄せる） */
 .thumb {
   width: 100%;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
 }
