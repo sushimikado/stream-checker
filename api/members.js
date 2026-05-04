@@ -133,7 +133,7 @@ h1 {
 
 .card {
   background: white;
-  border-radius: 18px;
+  border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
@@ -167,13 +167,14 @@ h1 {
 }
 
 .links {
-  margin-top: 10px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 .role {
   display: inline-block;
   padding: 4px 8px;
-  border-radius: 999px;
+  border-radius: 6px;
   font-size: 11px;
   margin: 2px;
   color: white;
@@ -190,22 +191,18 @@ h1 {
 /* 個別サイズ */
 .icon-img.x {
   width: 18px;
-  height: 18px;
 }
 
 .icon-img.youtube {
-  width: 22px;
-  height: 22px;
+  width: 24px;
 }
 
 .icon-img.twitch {
   width: 20px;
-  height: 20px;
 }
 
 .icon-img.tiktok {
   width: 19px;
-  height: 19px;
 }
 
 /* hover */
