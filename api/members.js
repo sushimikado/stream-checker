@@ -201,12 +201,13 @@ h1 {
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
-  color: #523f31;
+  color: #00ff00;
 }
 
 /* 個別サイズ */
 .icon-img.x {
   height: 15pt;
+  fill: #00ff00;
 }
 
 .icon-img.youtube {
