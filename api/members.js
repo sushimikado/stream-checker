@@ -12,7 +12,12 @@ export default async function handler(req, res) {
         .replace(/"/g, "&quot;");
     }
 
-    // 🔽 プラットフォーム判定
+    // URL表示用（https削除）
+    function formatUrl(url) {
+      if (!url) return "";
+      return url.replace(/^https?:\/\//, "");
+    }
+
     function getPlatformIcon(url) {
       if (!url) return "";
 
@@ -29,7 +34,6 @@ export default async function handler(req, res) {
       return `<img src="/icons/link.svg">`;
     }
 
-    // 🔽 Xアイコン（←これを使う）
     function getXIcon() {
       return `<img src="/icons/x.svg">`;
     }
@@ -50,14 +54,11 @@ export default async function handler(req, res) {
 
       const name = p["名前"]?.title?.[0]?.plain_text || "";
       const yomi = p["よみがな"]?.rich_text?.[0]?.plain_text || "";
-
       const order = p["管理用"]?.number ?? 9999;
 
       const x = p["X"]?.url || "";
       const main = p["配信"]?.url || "";
       const sub = p["配信サブ"]?.url || "";
-
-      // ✅ 追加
       const other = p["その他URL"]?.url || "";
 
       const roles = p["役職"]?.multi_select?.map(r => r.name) || [];
@@ -71,7 +72,6 @@ export default async function handler(req, res) {
       return { name, yomi, order, x, main, sub, other, roles, image };
     });
 
-    // 🔽 並び替え
     members.sort((a, b) => {
       if (a.order !== b.order) return a.order - b.order;
       return a.yomi.localeCompare(b.yomi, "ja");
@@ -82,6 +82,10 @@ export default async function handler(req, res) {
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <style>
+:root {
+  --icon-size: 20px; /* ←ここを変えれば全部変わる */
+}
+
 body {
   margin: 0;
   padding: 24px;
@@ -104,18 +108,23 @@ h1 {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  padding: 0px;
-  text-align: center;
 }
 
+/* 画像ラッパー（3:2固定） */
+.image-wrap {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+/* 画像トリミング */
 .avatar {
   width: 100%;
-  border-radius: 0px;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-bottom {
-  width: 100%;
-  border-radius: 0px;
   padding: 16px;
   text-align: left;
 }
@@ -148,8 +157,8 @@ h1 {
 
 /* アイコン */
 .icon img {
-  width: 20px;
-  height: 20px;
+  width: var(--icon-size);
+  height: var(--icon-size);
   vertical-align: middle;
   transition: transform 0.15s ease;
 }
@@ -162,7 +171,8 @@ h1 {
 .other {
   margin-top: 8px;
   font-size: 12px;
-  word-break: break-all;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .other a {
@@ -179,7 +189,11 @@ h1 {
 <div class="grid">
 ${members.map(m => `
 <div class="card">
-  ${m.image ? `<img class="avatar" src="${m.image}">` : ""}
+  ${m.image ? `
+  <div class="image-wrap">
+    <img class="avatar" src="${m.image}">
+  </div>` : ""}
+
   <div class="card-bottom">
     <div class="name">${escapeHtml(m.name)}</div>
     <div class="yomi">${escapeHtml(m.yomi)}</div>
@@ -192,7 +206,7 @@ ${members.map(m => `
 
     ${m.other ? `
       <div class="other">
-        <a href="${m.other}" target="_blank">${escapeHtml(m.other)}</a>
+        <a href="${m.other}" target="_blank">${escapeHtml(formatUrl(m.other))}</a>
       </div>
     ` : ""}
     
