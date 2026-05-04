@@ -167,7 +167,7 @@ h1 {
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 4px 4px 6px rgba(0,0,0,0.08);
+  box-shadow: 4px 4px 8px rgba(0,0,0,0.08);
 }
 
 /* 画像ラッパー（3:2固定） */
@@ -266,9 +266,8 @@ h1 {
   text-decoration: underline;
 }
 
-.other:hover {
+.other a:hover {
   color: var(--text-color-2);
-  transform: scale(1.20);
 }
 
 </style>
