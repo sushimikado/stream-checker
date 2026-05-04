@@ -201,7 +201,7 @@ h1 {
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
-  fill: #523f31;
+  color: #523f31;
 }
 
 /* 個別サイズ */
