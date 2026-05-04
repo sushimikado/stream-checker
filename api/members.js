@@ -174,7 +174,8 @@ h1 {
 
 .links {
   margin: 10px 0px;
-  height: 40px;
+  height: 30px;
+  vertical-align: middle;
 }
 
 .roles {
