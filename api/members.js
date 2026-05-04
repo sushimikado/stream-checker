@@ -18,6 +18,7 @@ export default async function handler(req, res) {
       return url.replace(/^https?:\/\//, "");
     }
 
+    // 配信プラットフォームアイコン
     function getPlatformIcon(url) {
       if (!url) return "";
 
@@ -34,10 +35,18 @@ export default async function handler(req, res) {
       return `<img src="/icons/link.svg">`;
     }
 
+    // Xアイコン
     function getXIcon() {
       return `<img src="/icons/x.svg">`;
     }
 
+    // 役職
+    function roleClassName(role) {
+      if (role === "主催") return "role-host";
+      if (role === "参加者") return "role-member";
+      return "role-default";
+    }
+    
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
       method: "POST",
       headers: {
@@ -142,17 +151,31 @@ h1 {
   margin-top: 10px;
 }
 
-.roles {
-  margin: 8px 0;
-}
-
 .role {
   display: inline-block;
-  background: #eee;
   padding: 4px 8px;
   border-radius: 999px;
   font-size: 11px;
   margin: 2px;
+  color: white;
+}
+
+/* 役職ごと */
+.role-主催 {
+  background: #ff4d4f;
+}
+
+.role-参加者 {
+  background: #1890ff;
+}
+
+.role-運営 {
+  background: #52c41a;
+}
+
+/* 未定義用 */
+.role-default {
+  background: #999;
 }
 
 /* アイコン */
@@ -211,7 +234,9 @@ ${members.map(m => `
     ` : ""}
     
     <div class="roles">
-      ${m.roles.map(r => `<span class="role">${escapeHtml(r)}</span>`).join("")}
+      ${m.roles.map(r => `
+        <span class="role ${roleClassName(r)}">${escapeHtml(r)}</span>
+      `).join("")}
     </div>
   </div>
 </div>
