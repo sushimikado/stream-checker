@@ -172,8 +172,9 @@ h1 {
 }
 
 .role {
-  display: inline-block;
-  padding: 1px 8px 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
   border-radius: 999px;
   font-size: 11px;
   margin: 0px 4px 0px -2px;
