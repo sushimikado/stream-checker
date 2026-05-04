@@ -40,11 +40,27 @@ export default async function handler(req, res) {
       return `<img src="/icons/x.svg">`;
     }
 
-    // 役職
-    function roleClassName(role) {
-      if (role === "主催") return "role-host";
-      if (role === "参加者") return "role-member";
-      return "role-default";
+    // 役職色
+    function getRoleStyle(color) {
+      const map = {
+        default: "#999",
+        gray: "#9e9e9e",
+        brown: "#8d6e63",
+        orange: "#fb8c00",
+        yellow: "#fbc02d",
+        green: "#43a047",
+        blue: "#1e88e5",
+        purple: "#8e24aa",
+        pink: "#d81b60",
+        red: "#e53935"
+      };
+
+      const bg = map[color] || "#999";
+
+      return `
+        background: ${bg};
+        color: white;
+      `;
     }
     
     const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
@@ -70,7 +86,10 @@ export default async function handler(req, res) {
       const sub = p["配信サブ"]?.url || "";
       const other = p["その他URL"]?.url || "";
 
-      const roles = p["役職"]?.multi_select?.map(r => r.name) || [];
+      const roles = p["役職"]?.multi_select?.map(r => ({
+        name: r.name,
+        color: r.color
+      })) || [];
 
       let image = "";
       const file = p["画像"]?.files?.[0];
@@ -160,24 +179,6 @@ h1 {
   color: white;
 }
 
-/* 役職ごと */
-.role-主催 {
-  background: #ff4d4f;
-}
-
-.role-参加者 {
-  background: #1890ff;
-}
-
-.role-運営 {
-  background: #52c41a;
-}
-
-/* 未定義用 */
-.role-default {
-  background: #999;
-}
-
 /* アイコン */
 .icon img {
   width: var(--icon-size);
@@ -187,7 +188,7 @@ h1 {
 }
 
 .icon:hover img {
-  transform: scale(1.15);
+  transform: scale(1.20);
 }
 
 /* その他URL */
@@ -234,9 +235,11 @@ ${members.map(m => `
     ` : ""}
     
     <div class="roles">
-      ${m.roles.map(r => `
-        <span class="role ${roleClassName(r)}">${escapeHtml(r)}</span>
-      `).join("")}
+     ${m.roles.map(r => `
+      <span class="role" style="${getRoleStyle(r.color)}">
+        ${escapeHtml(r.name)}
+      </span>
+    `).join("")}
     </div>
   </div>
 </div>
