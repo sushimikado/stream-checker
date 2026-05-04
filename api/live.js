@@ -1,65 +1,4 @@
-export default async function handler(req, res) {
-  try {
-    const NOTION_TOKEN = process.env.NOTION_TOKEN;
-    const DATABASE_ID = process.env.NOTION_DATABASE_ID;
-    const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-
-    function escapeHtml(str) {
-      if (!str) return "";
-      return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-    }
-
-    const notionRes = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${NOTION_TOKEN}`,
-        "Content-Type": "application/json",
-        "Notion-Version": "2022-06-28"
-      }
-    });
-
-    const notionData = await notionRes.json();
-
-    const channelIds = notionData.results
-      .map(page => {
-        const prop = page.properties["YouTubeChannelID"];
-        if (!prop || !prop.rich_text || prop.rich_text.length === 0) return null;
-        return prop.rich_text[0].plain_text;
-      })
-      .filter(Boolean);
-
-    const results = [];
-
-    for (const channelId of channelIds) {
-      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&eventType=live&type=video&key=${YOUTUBE_API_KEY}`;
-
-      const r = await fetch(url);
-      const data = await r.json();
-
-      if (data.items && data.items.length > 0) {
-        const v = data.items[0];
-
-        results.push({
-          title: v.snippet?.title || "",
-          url: `https://youtube.com/watch?v=${v.id?.videoId || ""}`,
-          thumbnail: v.snippet?.thumbnails?.medium?.url || ""
-        });
-      }
-    }
-
 const html = `
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/css/style.css">
-</head>
-
-<body>
-
 <div class="wrapper">
 ${
 results.length === 0
@@ -83,17 +22,6 @@ ${results.map(v => {
 }).join("")}
 </div>
 `
-}  //
-</div>
-
-</body>
-</html>
-`;
-
-    res.setHeader("Content-Type", "text/html");
-    res.status(200).send(html);
-
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
 }
+</div>
+`;
