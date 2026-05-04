@@ -173,7 +173,7 @@ h1 {
 
 .role {
   display: inline-block;
-  padding: 3px 8px;
+  padding: 1px 8px 3px 8px;
   border-radius: 999px;
   font-size: 11px;
   margin: 0px 2px 0px 0px;
@@ -183,7 +183,6 @@ h1 {
 /* アイコン */
 /* 共通 */
 .icon-img {
-  fill: #523f31;
   vertical-align: middle;
   transition: transform 0.15s ease;
   object-fit: contain;
@@ -191,18 +190,26 @@ h1 {
 
 /* 個別サイズ */
 .icon-img.x {
-  height: 18pt;
+  fill: #523f31;
+  margin: 0px 2px 0px 0px;
+  height: 16pt;
 }
 
 .icon-img.youtube {
-  height: 18pt;
+  fill: #523f31;
+  margin: 0px 2px 0px 0px;
+  height: 10pt;
 }
 
 .icon-img.twitch {
+  fill: #523f31;
+  margin: 0px 2px 0px 0px;
   height: 18pt;
 }
 
 .icon-img.tiktok {
+  fill: #523f31;
+  margin: 0px 2px 0px 0px;
   height: 18pt;
 }
 
