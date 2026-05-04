@@ -184,6 +184,7 @@ h1 {
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
+  object-fit: contain;
 }
 
 /* 個別サイズ */
