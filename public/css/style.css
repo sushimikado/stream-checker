@@ -1,0 +1,58 @@
+/* ===============================
+   ベース
+=============================== */
+
+body {
+  margin: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  background: transparent;
+  color: #523f31;
+}
+
+.container {
+  padding: 24px;
+}
+
+/* ===============================
+   見出し
+=============================== */
+
+.section-title {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* ===============================
+   グリッド（共通化）
+=============================== */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* ===============================
+   カード（後で共通化しやすい）
+=============================== */
+
+.card {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* ===============================
+   アイコン（共通制御）
+=============================== */
+
+.icon-svg {
+  fill: currentColor;
+  transition: transform 0.15s ease;
+}
+
+.icon:hover .icon-svg {
+  transform: scale(1.2);
+}
