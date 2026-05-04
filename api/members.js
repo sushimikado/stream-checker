@@ -175,6 +175,7 @@ h1 {
 .links {
   margin: 10px 0px;
   height: 30px;
+  gap: 4px;
   vertical-align: middle;
 }
 
@@ -205,25 +206,21 @@ h1 {
 /* 個別サイズ */
 .icon-img.x {
   fill: #523f31;
-  margin: 0px 3px 0px 0px;
   height: 15pt;
 }
 
 .icon-img.youtube {
   fill: #523f31;
-  margin: 0px 3px 0px 0px;
   height: 12pt;
 }
 
 .icon-img.twitch {
   fill: #523f31;
-  margin: 0px 3px 0px 0px;
   height: 18pt;
 }
 
 .icon-img.tiktok {
   fill: #523f31;
-  margin: 0px 3px 0px 0px;
   height: 18pt;
 }
 
