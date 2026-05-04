@@ -174,7 +174,7 @@ h1 {
 .role {
   display: inline-block;
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 11px;
   margin: 2px;
   color: white;
@@ -190,19 +190,19 @@ h1 {
 
 /* 個別サイズ */
 .icon-img.x {
-  width: 18px;
+  height: 18pt;
 }
 
 .icon-img.youtube {
-  width: 24px;
+  height: 18pt;
 }
 
 .icon-img.twitch {
-  width: 20px;
+  height: 18pt;
 }
 
 .icon-img.tiktok {
-  width: 19px;
+  height: 18pt;
 }
 
 /* hover */
