@@ -148,7 +148,7 @@ body {
   margin: 0;
   padding: 24px;
   font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-color: #523f31;
+  color: #523f31;
   background: rgba(0,0,0,0);
 }
 
@@ -225,8 +225,8 @@ h1 {
 /* アイコン */
 /* 共通 */
 .icon-svg {
-  fill: #523f31
-  transition: all 1s ease;
+  fill: #523f31;
+  transition: transform 0.15s ease;
 }
 
 /* 個別 */
