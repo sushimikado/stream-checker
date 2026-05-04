@@ -68,16 +68,16 @@ function getPlatformIcon(url) {
     // 役職色
     function getRoleStyle(color) {
       const map = {
-        default: "#999",
-        gray: "#9e9e9e",
-        brown: "#8d6e63",
-        orange: "#fb8c00",
-        yellow: "#fbc02d",
-        green: "#43a047",
-        blue: "#1e88e5",
-        purple: "#8e24aa",
-        pink: "#d81b60",
-        red: "#e53935"
+        default: "#f0efed",
+        gray: "#e6e5e3",
+        brown: "#ebdfd7",
+        orange: "#f3ddcb",
+        yellow: "#f2e3b7",
+        green: "#d7e6dd",
+        blue: "#cbe3f7",
+        purple: "#e8dbf2",
+        pink: "#f4d8e4",
+        red: "#f7d9d5"
       };
 
       const bg = map[color] || "#999";
@@ -211,16 +211,18 @@ h1 {
   flex-wrap: wrap;
   gap: 4px;
   min-height: 24px;
-  padding: 0px 0px 0px -3px;
+  padding: 0px 0px 0px -5px;
 }
 
 .role {
   font-weight: 500;
+  color: var(--text-color-1);
   display: inline-flex;
   align-items: center;
-  padding: 1px 10px 3px 10px;
+  padding: 0.5px 10px 3px 10px;
   border-radius: 999px;
   font-size: 11px;
+  border: 1px solid var(--text-color-1);
 }
 
 /* アイコン */
