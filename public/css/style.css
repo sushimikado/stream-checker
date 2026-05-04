@@ -1,13 +1,21 @@
-/* ===== 共通グリッド（横並び・自動改行） ===== */
+/* ===== グリッド（これが無いと縦に並ぶ） ===== */
 .grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
 }
 
+/* ===== wrapperも統一 ===== */
 .wrapper {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* ===== カードリンク（live用） ===== */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 /* ===== カード共通（membersと完全一致） ===== */
@@ -18,13 +26,6 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
-}
-
-/* ===== LIVE用：カード全体リンク ===== */
-.card-link {
-  display: block;
-  color: inherit;
-  text-decoration: none;
 }
 
 /* hoverはLIVEだけ */
