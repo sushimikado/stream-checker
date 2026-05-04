@@ -201,26 +201,23 @@ h1 {
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
+  fill: #523f31;
 }
 
 /* 個別サイズ */
 .icon-img.x {
-  fill: #523f31;
   height: 15pt;
 }
 
 .icon-img.youtube {
-  fill: #523f31;
   height: 12pt;
 }
 
 .icon-img.twitch {
-  fill: #523f31;
   height: 18pt;
 }
 
 .icon-img.tiktok {
-  fill: #523f31;
   height: 18pt;
 }
 
