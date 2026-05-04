@@ -173,9 +173,8 @@ h1 {
 }
 
 .links {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  height: 20px;
+  margin: 10px 0px;
+  height: 40px;
 }
 
 .roles {
