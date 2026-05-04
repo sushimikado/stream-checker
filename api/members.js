@@ -225,7 +225,7 @@ h1 {
 /* アイコン */
 /* 共通 */
 .icon-svg {
-  fill: #523f31;
+  color: #523f31;
   transition: transform 0.15s ease;
 }
 
