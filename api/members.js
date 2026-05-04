@@ -246,7 +246,7 @@ h1 {
 }
 
 /* hover */
-.icon:hover .icon-img {
+.icon:hover .icon-svg {
   transform: scale(1.20);
 }
 
