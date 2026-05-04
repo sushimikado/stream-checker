@@ -167,8 +167,8 @@ h1 {
 }
 
 .links {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .role {
@@ -192,13 +192,13 @@ h1 {
 .icon-img.x {
   fill: #523f31;
   margin: 0px 2px 0px 0px;
-  height: 16pt;
+  height: 14pt;
 }
 
 .icon-img.youtube {
   fill: #523f31;
   margin: 0px 2px 0px 0px;
-  height: 10pt;
+  height: 12pt;
 }
 
 .icon-img.twitch {
