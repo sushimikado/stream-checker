@@ -108,7 +108,12 @@ export default async function handler(req, res) {
     const html = `
 <html>
 <head>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
 <style>
 :root {
   --icon-size: 20px; /* ←ここを変えれば全部変わる */
@@ -117,7 +122,7 @@ export default async function handler(req, res) {
 body {
   margin: 0;
   padding: 24px;
-  font-family: -apple-system, sans-serif;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: rgba(0,0,0,0);
 }
 
@@ -158,11 +163,12 @@ h1 {
 }
 
 .name {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .yomi {
   font-size: 12px;
+  font-weight: 500;
   color: #666;
 }
 
@@ -179,6 +185,7 @@ h1 {
 }
 
 .role {
+  font-weight: 500;
   display: inline-flex;
   align-items: center;
   padding: 3px 8px;
