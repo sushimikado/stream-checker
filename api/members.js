@@ -23,21 +23,21 @@ export default async function handler(req, res) {
       if (!url) return "";
 
       if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        return `<img src="/icons/youtube.svg">`;
+        return `<img class="icon-img youtube" src="/icons/youtube.svg">`;
       }
       if (url.includes("twitch.tv")) {
-        return `<img src="/icons/twitch.svg">`;
+        return `<img class="icon-img twitch" src="/icons/twitch.svg">`;
       }
       if (url.includes("tiktok.com")) {
-        return `<img src="/icons/tiktok.svg">`;
+        return `<img class="icon-img tiktok" src="/icons/tiktok.svg">`;
       }
 
-      return `<img src="/icons/link.svg">`;
+      return `<img class="icon-img link" src="/icons/link.svg">`;
     }
 
     // Xアイコン
     function getXIcon() {
-      return `<img src="/icons/x.svg">`;
+      return `<img class="icon-img x" src="/icons/x.svg">`;
     }
 
     // 役職色
@@ -180,14 +180,35 @@ h1 {
 }
 
 /* アイコン */
-.icon img {
-  width: var(--icon-size);
-  height: var(--icon-size);
+/* 共通 */
+.icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
 }
 
-.icon:hover img {
+/* 個別サイズ */
+.icon-img.x {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-img.youtube {
+  width: 22px;
+  height: 22px;
+}
+
+.icon-img.twitch {
+  width: 20px;
+  height: 20px;
+}
+
+.icon-img.tiktok {
+  width: 19px;
+  height: 19px;
+}
+
+/* hover */
+.icon:hover .icon-img {
   transform: scale(1.20);
 }
 
