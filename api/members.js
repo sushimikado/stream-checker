@@ -185,31 +185,30 @@ h1 {
 .icon-img {
   vertical-align: middle;
   transition: transform 0.15s ease;
-  object-fit: contain;
 }
 
 /* 個別サイズ */
 .icon-img.x {
   fill: #523f31;
-  margin: 0px 2px 0px 0px;
-  height: 14pt;
+  margin: 0px 3px 0px 0px;
+  height: 15pt;
 }
 
 .icon-img.youtube {
   fill: #523f31;
-  margin: 0px 2px 0px 0px;
+  margin: 0px 3px 0px 0px;
   height: 12pt;
 }
 
 .icon-img.twitch {
   fill: #523f31;
-  margin: 0px 2px 0px 0px;
+  margin: 0px 3px 0px 0px;
   height: 18pt;
 }
 
 .icon-img.tiktok {
   fill: #523f31;
-  margin: 0px 2px 0px 0px;
+  margin: 0px 3px 0px 0px;
   height: 18pt;
 }
 
@@ -220,7 +219,7 @@ h1 {
 
 /* その他URL */
 .other {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 12px;
   word-break: break-word;
   overflow-wrap: anywhere;
