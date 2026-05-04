@@ -258,6 +258,7 @@ h1 {
   font-size: 12px;
   word-break: break-word;
   overflow-wrap: anywhere;
+  transition: transform 0.15s ease;
 }
 
 .other a {
@@ -265,7 +266,7 @@ h1 {
   text-decoration: underline;
 }
 
-.other a:hover {
+.other:hover {
   color: var(--text-color-2);
   transform: scale(1.20);
 }
