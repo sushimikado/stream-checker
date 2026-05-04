@@ -224,7 +224,7 @@ h1 {
   color: var(--text-color-1);
   display: inline-flex;
   align-items: center;
-  padding: 0.5px 10px 3px 10px;
+  padding: 0.75px 10px 3px 10px;
   border-radius: 999px;
   font-size: 11px;
   border: 1px solid var(--text-color-1);
