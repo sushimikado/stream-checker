@@ -18,22 +18,42 @@ export default async function handler(req, res) {
       return url.replace(/^https?:\/\//, "");
     }
 
-    // 配信プラットフォームアイコン
-    function getPlatformIcon(url) {
-      if (!url) return "";
+// 配信プラットフォームアイコン（←ここだけ修正）
+function getPlatformIcon(url) {
+  if (!url) return "";
 
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        return `<img class="icon-img youtube" src="/icons/youtube.svg">`;
-      }
-      if (url.includes("twitch.tv")) {
-        return `<img class="icon-img twitch" src="/icons/twitch.svg">`;
-      }
-      if (url.includes("tiktok.com")) {
-        return `<img class="icon-img tiktok" src="/icons/tiktok.svg">`;
-      }
+  // YouTube
+  if (url.includes("youtube.com") || url.includes("youtu.be")) {
+    return `
+    <svg class="icon-svg youtube" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z"/>
+    </svg>`;
+  }
 
-      return `<img class="icon-img link" src="/icons/link.svg">`;
-    }
+  // Twitch
+  if (url.includes("twitch.tv")) {
+    return `
+    <svg class="icon-svg twitch" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M4 2L2 6v14h5v4l4-4h3l6-6V2H4zm14 11l-3 3h-4l-3 3v-3H4V4h14v9z"/>
+      <path fill="currentColor" d="M15 7h-2v5h2V7zm-4 0H9v5h2V7z"/>
+    </svg>`;
+  }
+
+  // TikTok
+  if (url.includes("tiktok.com")) {
+    return `
+    <svg class="icon-svg tiktok" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M16.5 3c.3 1.7 1.6 3 3.3 3.3v3.2c-1.3 0-2.6-.4-3.8-1.2v6.2c0 3.1-2.5 5.5-5.5 5.5S5 17.6 5 14.5 7.5 9 10.5 9c.3 0 .7 0 1 .1v3.3c-.3-.1-.6-.2-1-.2-1.4 0-2.5 1.1-2.5 2.5S9.1 17 10.5 17s2.5-1.1 2.5-2.5V3h3.5z"/>
+    </svg>`;
+  }
+
+  // fallback
+  return `
+  <svg class="icon-svg link" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M10 14a5 5 0 0 1 0-7l1-1a5 5 0 0 1 7 7l-1 1"/>
+    <path fill="currentColor" d="M14 10a5 5 0 0 1 0 7l-1 1a5 5 0 0 1-7-7l1-1"/>
+  </svg>`;
+}
 
     // Xアイコン
     function getXIcon() {
@@ -206,26 +226,20 @@ h1 {
   fill: #00ff00
 }
 
-.icon-img {
-  vertical-align: middle;
-  transition: transform 0.15s ease;
-  color: #00ff00;
-}
-
-/* 個別サイズ */
+/* 個別 */
 .icon-svg.x {
   height: 15pt;
 }
 
-.icon-img.youtube {
+.icon-svg.youtube {
   height: 12pt;
 }
 
-.icon-img.twitch {
+.icon-svg.twitch {
   height: 18pt;
 }
 
-.icon-img.tiktok {
+.icon-svg.tiktok {
   height: 18pt;
 }
 
