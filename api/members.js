@@ -176,7 +176,7 @@ h1 {
   padding: 1px 8px 3px 8px;
   border-radius: 999px;
   font-size: 11px;
-  margin: -2px 4px 0px 0px;
+  margin: 0px 4px 0px -2px;
   color: white;
 }
 
