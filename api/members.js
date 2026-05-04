@@ -172,9 +172,10 @@ h1 {
 }
 
 .role {
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 3px 8px;
+  padding: 1px 8px 3px 8px;
   border-radius: 999px;
   font-size: 11px;
   margin: 0px 4px 0px -2px;
