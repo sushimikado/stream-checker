@@ -167,8 +167,8 @@ h1 {
 }
 
 .links {
-  margin-top: 6px;
-  margin-bottom: 6px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .role {
@@ -176,7 +176,7 @@ h1 {
   padding: 4px 8px;
   border-radius: 8px;
   font-size: 11px;
-  margin: 2px;
+  margin: 0px 3px 0px 0px;
   color: white;
 }
 
@@ -212,7 +212,7 @@ h1 {
 
 /* その他URL */
 .other {
-  margin-top: 8px;
+  margin-bottom: 8px;
   font-size: 12px;
   word-break: break-word;
   overflow-wrap: anywhere;
