@@ -158,11 +158,13 @@ function getPlatformIcon(url) {
       </div>
     ` : ""}
     
-    <div class="roles">
-      ${m.roles.map(r => `
-        <span class="role">${escapeHtml(r.name)}</span>
-      `).join("")}
-    </div>
+<div class="roles">
+  ${m.roles.map(r => `
+    <span class="role" style="${getRoleStyle(r.color)}">
+      ${escapeHtml(r.name)}
+    </span>
+  `).join("")}
+</div>
   </div>
 </div>
 `).join("");
