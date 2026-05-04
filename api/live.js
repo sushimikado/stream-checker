@@ -61,7 +61,6 @@ export default async function handler(req, res) {
 <body>
 
 <div class="wrapper">
-
 ${
 results.length === 0
 ? `<p class="empty">現在配信中の参加者はいません</p>`
@@ -83,6 +82,8 @@ ${results.map(v => {
 `;
 }).join("")}
 </div>
+</div>
+`
 
 </body>
 </html>
