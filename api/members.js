@@ -173,16 +173,17 @@ h1 {
 
 .role {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
   font-size: 11px;
-  margin: 0px 3px 0px 0px;
+  margin: 0px 2px 0px 0px;
   color: white;
 }
 
 /* アイコン */
 /* 共通 */
 .icon-img {
+  fill: #523f31;
   vertical-align: middle;
   transition: transform 0.15s ease;
   object-fit: contain;
