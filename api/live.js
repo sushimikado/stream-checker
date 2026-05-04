@@ -55,89 +55,7 @@ export default async function handler(req, res) {
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<style>
-body {
-  margin: 0;
-  padding: 16px;
-  background: transparent; /* ← ここ重要 */
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-}
 
-/* コンテナ */
-.wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-/* グリッド */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-/* カード */
-.card {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
-}
-
-/* サムネ */
-.thumb {
-  width: 100%;
-  display: block;
-}
-
-/* コンテンツ */
-.content {
-  padding: 16px;
-}
-
-/* LIVEバッジ */
-.live-badge {
-  display: inline-block;
-  background: #ff3b30;
-  color: white;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-/* タイトル */
-.title {
-  margin: 10px 0 14px;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-}
-
-/* ボタン */
-.button {
-  display: inline-block;
-  background: #111;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-/* 空状態 */
-.empty {
-  color: #666;
-  font-size: 14px;
-}
-</style>
 </head>
 
 <body>
@@ -153,22 +71,17 @@ ${results.map(v => {
   const title = escapeHtml(v.title);
 
   return `
-<div class="card">
-  <img class="thumb" src="${v.thumbnail}">
-  <div class="content">
-    <span class="live-badge">LIVE</span>
-    <div class="title">${title}</div>
-    <a class="button" href="${v.url}" target="_blank">
-      視聴する
-    </a>
+<a class="card-link" href="${v.url}" target="_blank">
+  <div class="card">
+    <img class="thumb" src="${v.thumbnail}">
+    <div class="content">
+      <span class="live-badge">LIVE</span>
+      <div class="title">${title}</div>
+    </div>
   </div>
-</div>
+</a>
 `;
 }).join("")}
-</div>
-`
-}
-
 </div>
 
 </body>
