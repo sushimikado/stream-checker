@@ -226,6 +226,7 @@ h1 {
 /* 共通 */
 .icon-svg {
   fill: #523f31
+  transition: all 1s ease;
 }
 
 /* 個別 */
