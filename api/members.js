@@ -24,7 +24,7 @@ function formatUrl(url) {
   }
 }
     
-// 配信プラットフォームアイコン（←ここだけ修正）
+// 配信プラットフォームアイコン
 function getPlatformIcon(url) {
   if (!url) return "";
 
@@ -158,10 +158,6 @@ body {
   background: rgba(0,0,0,0);
 }
 
-h1 {
-  margin-bottom: 24px;
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -281,8 +277,6 @@ h1 {
 </head>
 
 <body>
-
-<h1>メンバー一覧</h1>
 
 <div class="grid">
 ${members.map(m => `
