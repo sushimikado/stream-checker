@@ -173,10 +173,10 @@ h1 {
 }
 
 .links {
-  margin: 10px 0px;
-  height: 30px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
   gap: 8px;
-  vertical-align: middle;
 }
 
 .roles {
