@@ -86,7 +86,7 @@ body {
   margin: 0;
   padding: 24px;
   font-family: -apple-system, sans-serif;
-  background: #fafafa;
+  background: rgba(0,0,0,0);
 }
 
 h1 {
@@ -104,13 +104,13 @@ h1 {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  padding: 16px;
+  padding: 0px;
   text-align: center;
 }
 
 .avatar {
   width: 100%;
-  border-radius: 12px;
+  border-radius: 0px;
 }
 
 .name {
