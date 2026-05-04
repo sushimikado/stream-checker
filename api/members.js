@@ -175,6 +175,7 @@ h1 {
 .links {
   margin-top: 10px;
   margin-bottom: 10px;
+  height: 20px;
 }
 
 .roles {
@@ -182,13 +183,14 @@ h1 {
   flex-wrap: wrap;
   gap: 4px;
   min-height: 24px;
+  padding: 0px 0px 0px -3px;
 }
 
 .role {
   font-weight: 500;
   display: inline-flex;
   align-items: center;
-  padding: 3px 8px;
+  padding: 1px 10px 3px 10px;
   border-radius: 999px;
   font-size: 11px;
 }
