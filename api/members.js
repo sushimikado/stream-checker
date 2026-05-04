@@ -172,7 +172,7 @@ h1 {
 }
 
 .role {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   align-items: center;
   padding: 1px 8px 3px 8px;
