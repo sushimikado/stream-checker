@@ -176,7 +176,7 @@ h1 {
   padding: 1px 8px 3px 8px;
   border-radius: 999px;
   font-size: 11px;
-  margin: 0px 2px 0px 0px;
+  margin: -2px 4px 0px 0px;
   color: white;
 }
 
@@ -190,7 +190,7 @@ h1 {
 /* 個別サイズ */
 .icon-img.x {
   fill: #523f31;
-  margin: -2px 6px 0px 0px;
+  margin: 0px 3px 0px 0px;
   height: 15pt;
 }
 
