@@ -13,11 +13,17 @@ export default async function handler(req, res) {
     }
 
     // URL表示用（https削除）
-    function formatUrl(url) {
-      if (!url) return "";
-      return url.replace(/^https?:\/\//, "");
-    }
+function formatUrl(url) {
+  if (!url) return "";
 
+  try {
+    const u = new URL(url);
+    return u.hostname; // ← ドメインだけ取得
+  } catch {
+    return url;
+  }
+}
+    
 // 配信プラットフォームアイコン（←ここだけ修正）
 function getPlatformIcon(url) {
   if (!url) return "";
@@ -166,7 +172,7 @@ h1 {
   background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 4px 4px 8px rgba(0,0,0,0.08);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
 }
 
 /* 画像ラッパー（3:2固定） */
@@ -199,7 +205,7 @@ h1 {
 }
 
 .links {
-  margin: 10px 0;
+  margin: 12px 0;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -210,7 +216,7 @@ h1 {
   flex-wrap: wrap;
   gap: 4px;
   min-height: 24px;
-  padding: 0px 0px 0px -5px;
+  padding: 0px 0px 0px -6px;
 }
 
 .role {
@@ -255,7 +261,7 @@ h1 {
 
 /* その他URL */
 .other {
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   font-size: 12px;
   word-break: break-word;
   overflow-wrap: anywhere;
