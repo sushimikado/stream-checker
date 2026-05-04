@@ -29,14 +29,14 @@ export default async function handler(req, res) {
       const name = p["名前"]?.title?.[0]?.plain_text || "";
       const yomi = p["よみがな"]?.rich_text?.[0]?.plain_text || "";
 
-      const x = p["XのURL"]?.url || "";
-      const youtube = p["YouTubeのURL"]?.url || "";
-      const twitch = p["TwitchのURL"]?.url || "";
+      const x = p["X"]?.url || "";
+      const youtube = p["配信"]?.url || "";
+      const twitch = p["配信サブ"]?.url || "";
 
       const roles = p["役職"]?.multi_select?.map(r => r.name) || [];
 
       let image = "";
-      const file = p["イラスト"]?.files?.[0];
+      const file = p["画像"]?.files?.[0];
       if (file) {
         image = file.type === "external" ? file.external.url : file.file.url;
       }
