@@ -142,7 +142,7 @@ function getPlatformIcon(url) {
 <style>
 :root {
   --text-color-1: #523f31;
-  --text-color-2: #a1816a;
+  --text-color-2: #755a46;
 }
 
 body {
@@ -203,7 +203,7 @@ h1 {
   margin: 10px 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .roles {
@@ -267,6 +267,7 @@ h1 {
 
 .other a:hover {
   color: var(--text-color-2);
+  transform: scale(1.20);
 }
 
 </style>
