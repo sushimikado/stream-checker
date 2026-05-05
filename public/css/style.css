@@ -163,6 +163,13 @@ body {
   box-shadow: 4px 6px 16px rgba(0,0,0,0.12);
 }
 
+.empty-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
 /* ===== サムネ統一（membersと同じ） ===== */
 .thumb {
   width: 100%;
