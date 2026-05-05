@@ -74,11 +74,11 @@ const html = `
     ${
       results.length === 0
         ? `<div class="card empty-card">
-            <div class="content">
               <div class="thumb-empty">STANDBY</div>
-              <span class="live-badge">● INFO</span>
-              <div class="title">現在配信中の参加者はいません</div>
-            </div>
+              <div class="card-bottom">
+                <span class="live-badge">● INFO</span>
+                <div class="title">現在配信中の参加者はいません</div>
+              </div>
           </div>`
         : cards
     }
