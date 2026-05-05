@@ -67,16 +67,24 @@ export default async function handler(req, res) {
 `;
     }).join("");
 
-    const html = `
+const html = `
 <div class="wrapper">
-${
-  results.length === 0
-    ? `<p class="empty">現在配信中の参加者はいません</p>`
-    : `<div class="grid">${cards}</div>`
-}
+
+  <div class="grid">
+    ${
+      results.length === 0
+        ? `<div class="card empty-card">
+            <div class="content">
+              <span class="live-badge">INFO</span>
+              <div class="title">現在配信中の参加者はいません</div>
+            </div>
+          </div>`
+        : cards
+    }
+  </div>
+
 </div>
 `;
-
     res.setHeader("Content-Type", "text/html");
     res.status(200).send(html);
 
