@@ -59,7 +59,7 @@ export default async function handler(req, res) {
   <div class="card">
     <img class="thumb" src="${v.thumbnail}">
     <div class="content">
-      <span class="live-badge">LIVE</span>
+      <span class="live-badge">● YouTube</span>
       <div class="title">${title}</div>
     </div>
   </div>
@@ -75,7 +75,8 @@ const html = `
       results.length === 0
         ? `<div class="card empty-card">
             <div class="content">
-              <span class="live-badge">INFO</span>
+              <div class="thumb-empty">STANDBY</div>
+              <span class="live-badge">● INFO</span>
               <div class="title">現在配信中の参加者はいません</div>
             </div>
           </div>`
