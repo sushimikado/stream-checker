@@ -92,6 +92,7 @@ body {
 /* 共通 */
 .icon-svg {
   color: var(--text-color-1);
+  vertical-align: center;
   transition: transform 0.15s ease;
 }
 
