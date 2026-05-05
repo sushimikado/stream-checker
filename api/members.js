@@ -107,7 +107,11 @@ function getPlatformIcon(url) {
     const members = data.results.map(page => {
       const p = page.properties;
 
-      const name = p["名前"]?.title?.[0]?.plain_text || "";
+      const name =
+        (p["名前"]?.title || [])
+          .map(t => t.plain_text || "")
+          .join("")
+          .trim();
       const yomi = p["よみがな"]?.rich_text?.[0]?.plain_text || "";
       const order = p["管理用"]?.number ?? 9999;
 
