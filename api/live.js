@@ -73,7 +73,7 @@ const html = `
   <div class="grid">
     ${
       results.length === 0
-        ? `<div class="card empty-card">
+        ? `<div class="card">
               <div class="thumb-empty">STANDBY</div>
               <div class="card-bottom">
                 <span class="live-badge">● INFO</span>
