@@ -80,9 +80,9 @@ const html = `
                 <span class="live-badge-empty">● INFO</span>
                 <div class="title">配信中の参加者がここに表示されます</div>
               </div>
-          </div>`
+          </div>
       
-        ? `<div class="card">
+        <div class="card">
               <div class="thumb-empty">STANDBY</div>
               <div class="card-bottom">
                 <span class="live-badge-empty">● INFO</span>
