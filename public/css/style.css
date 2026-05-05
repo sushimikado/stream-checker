@@ -183,13 +183,6 @@ body {
   color: white
 }
 
-.content {
-  padding: 12px 16px 16px;
-  display: ;
-  flex-direction: column;
-  gap: 6px;
-}
-
 .live-badge {
   display: inline-block;
   background: #ff3b30;
