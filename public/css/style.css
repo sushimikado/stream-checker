@@ -180,6 +180,8 @@ body {
   aspect-ratio: 16 / 9;
   display: flex;
   background: #cccccc;
+  font-size: 18px;
+  font-weight: 700;
   color: #666666;
   justify-content: center;
   align-items: center;
