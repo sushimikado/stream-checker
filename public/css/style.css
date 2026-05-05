@@ -90,9 +90,14 @@ body {
 
 /* アイコン */
 /* 共通 */
+.icon {
+  display: flex;
+  align-items: center;
+} 
+
 .icon-svg {
+  display: block;
   color: var(--text-color-1);
-  vertical-align: center;
   transition: transform 0.15s ease;
 }
 
