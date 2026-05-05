@@ -93,6 +93,9 @@ body {
 .icon {
   display: flex;
   align-items: center;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
 } 
 
 .icon-svg {
