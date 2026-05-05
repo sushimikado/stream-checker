@@ -68,7 +68,6 @@ export default async function handler(req, res) {
     }).join("");
 
 const html = `
-<div class="wrapper">
     ${
       results.length === 0
       
@@ -90,7 +89,6 @@ const html = `
       
         : cards
     }
-</div>
 `;
     res.setHeader("Content-Type", "text/html");
     res.status(200).send(html);
