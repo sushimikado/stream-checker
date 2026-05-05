@@ -175,6 +175,14 @@ body {
   display: block;
 }
 
+.thumb-empty {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  background: #888888;
+  color: white
+}
+
 .content {
   padding: 12px 16px 16px;
   display: ;
