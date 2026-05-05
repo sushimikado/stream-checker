@@ -76,7 +76,7 @@ const html = `
         ? `<div class="card">
               <div class="thumb-empty">STANDBY</div>
               <div class="card-bottom">
-                <span class="live-badge">● INFO</span>
+                <span class="live-badge-empty">● INFO</span>
                 <div class="title">現在配信中の参加者はいません</div>
               </div>
           </div>`
