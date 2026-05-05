@@ -71,9 +71,7 @@ export default async function handler(req, res) {
 <div class="wrapper">
 ${
   results.length === 0
-  <div class="card">
     ? `<p class="empty">現在配信中の参加者はいません</p>`
-  </div>
     : `<div class="grid">${cards}</div>`
 }
 </div>
