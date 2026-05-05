@@ -11,6 +11,10 @@ body {
   background: rgba(0,0,0,0);
 }
 
+.container {
+  width: 1280px;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -85,7 +89,7 @@ body {
 /* アイコン */
 /* 共通 */
 .icon-svg {
-  color: #523f31;
+  color: var(--text-color-1);
   transition: transform 0.15s ease;
 }
 
@@ -113,7 +117,7 @@ body {
 
 /* その他URL */
 .other {
-  margin-bottom: 14px;
+  margin: -3px 0px 14px 0px;
   font-size: 12px;
   word-break: break-word;
   overflow-wrap: anywhere;
