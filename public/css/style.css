@@ -145,11 +145,6 @@ body {
 }
 
 /* ======== 配信中枠 ======== */
-.wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
 .card-link {
   text-decoration: none;
   color: inherit;
@@ -159,13 +154,6 @@ body {
 .card-link:hover .card {
   transform: translateY(-3px);
   box-shadow: 4px 6px 16px rgba(0,0,0,0.12);
-}
-
-.empty-card {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
 }
 
 .thumb {
