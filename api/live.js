@@ -73,13 +73,23 @@ const html = `
   <div class="grid">
     ${
       results.length === 0
+      
         ? `<div class="card">
               <div class="thumb-empty">STANDBY</div>
               <div class="card-bottom">
                 <span class="live-badge-empty">● INFO</span>
-                <div class="title">現在配信中の参加者はいません</div>
+                <div class="title">配信中の参加者がここに表示されます</div>
               </div>
           </div>`
+      
+        ? `<div class="card">
+              <div class="thumb-empty">STANDBY</div>
+              <div class="card-bottom">
+                <span class="live-badge-empty">● INFO</span>
+                <div class="title">API制限により情報が取得されない場合があります</div>
+              </div>
+          </div>`
+      
         : cards
     }
   </div>
