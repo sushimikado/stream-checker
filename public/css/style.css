@@ -179,10 +179,10 @@ body {
   width: 100%;
   aspect-ratio: 16 / 9;
   display: flex;
-  background: #BBBBBB;
+  background: #AAAAAA;
   font-size: 21px;
   font-weight: 700;
-  color: #999999;
+  color: #CCCCCC;
   justify-content: center;
   align-items: center;
 }
