@@ -78,15 +78,31 @@ if (!databaseRes.ok) {
 
 const databaseData = await databaseRes.json();
 
-return res.status(200).json({
-  debug: {
-    databaseStatus: databaseRes.status,
-    object: databaseData.object,
-    id: databaseData.id,
-    dataSources: databaseData.data_sources || null,
-    error: databaseData.message || null
+const dataSourceId = databaseData.data_sources?.[0]?.id;
+
+if (!dataSourceId) {
+  throw new Error("NotionのデータソースIDを取得できませんでした");
+}
+
+const notionRes = await fetch(
+  `https://api.notion.com/v1/data_sources/${dataSourceId}/query`,
+  {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${NOTION_TOKEN}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2025-09-03"
+    },
+    body: JSON.stringify({})
   }
-});
+);
+
+if (!notionRes.ok) {
+  const errorText = await notionRes.text();
+  throw new Error(`Notionデータソース取得エラー: ${notionRes.status} ${errorText}`);
+}
+
+const notionData = await notionRes.json();
 
 if (!dataSourceId) {
   throw new Error(
