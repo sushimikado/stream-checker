@@ -78,8 +78,15 @@ if (!databaseRes.ok) {
 
 const databaseData = await databaseRes.json();
 
-const dataSourceId =
-  databaseData.data_sources?.[0]?.id;
+return res.status(200).json({
+  debug: {
+    databaseStatus: databaseRes.status,
+    object: databaseData.object,
+    id: databaseData.id,
+    dataSources: databaseData.data_sources || null,
+    error: databaseData.message || null
+  }
+});
 
 if (!dataSourceId) {
   throw new Error(
