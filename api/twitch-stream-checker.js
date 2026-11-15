@@ -52,40 +52,68 @@ export default async function handler(req, res) {
     // Notionからメンバー取得
     // =========================
 
-    const notionRes = await fetch(
-      `https://api.notion.com/v1/databases/${NOTION_MEMBERS_DATABASE_ID}/query`,
-      {
-        method: "POST",
+// =========================
+// NotionデータソースID取得
+// =========================
 
-        headers: {
-          "Authorization":
-            `Bearer ${NOTION_TOKEN}`,
+const databaseRes = await fetch(
+  `https://api.notion.com/v1/databases/${NOTION_MEMBERS_DATABASE_ID}`,
+  {
+    method: "GET",
 
-          "Content-Type":
-            "application/json",
-
-          "Notion-Version":
-            "2022-06-28"
-        }
-      }
-    );
-
-
-    if (!notionRes.ok) {
-
-      const errorText =
-        await notionRes.text();
-
-      throw new Error(
-        `Notion API エラー: ${notionRes.status} ${errorText}`
-      );
-
+    headers: {
+      "Authorization": `Bearer ${NOTION_TOKEN}`,
+      "Notion-Version": "2025-09-03"
     }
+  }
+);
+
+if (!databaseRes.ok) {
+  const errorText = await databaseRes.text();
+
+  throw new Error(
+    `Notion Database API エラー: ${databaseRes.status} ${errorText}`
+  );
+}
+
+const databaseData = await databaseRes.json();
+
+const dataSourceId =
+  databaseData.data_sources?.[0]?.id;
+
+if (!dataSourceId) {
+  throw new Error(
+    "NotionのデータソースIDを取得できませんでした"
+  );
+}
 
 
-    const notionData =
-      await notionRes.json();
+// =========================
+// Notionメンバー取得
+// =========================
 
+const notionRes = await fetch(
+  `https://api.notion.com/v1/data_sources/${dataSourceId}/query`,
+  {
+    method: "POST",
+
+    headers: {
+      "Authorization": `Bearer ${NOTION_TOKEN}`,
+      "Content-Type": "application/json",
+      "Notion-Version": "2025-09-03"
+    }
+  }
+);
+
+if (!notionRes.ok) {
+  const errorText = await notionRes.text();
+
+  throw new Error(
+    `Notion Query API エラー: ${notionRes.status} ${errorText}`
+  );
+}
+
+const notionData = await notionRes.json();
 
     // =========================
     // TwitchIDを取得
