@@ -208,3 +208,73 @@ body {
   color: #666;
   font-size: 14px;
 }
+
+
+/* ======== Twitch配信カード ======== */
+
+.twitch-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.twitch-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* hover */
+.twitch-card-link:hover .twitch-card {
+  transform: translateY(-3px);
+  box-shadow: 4px 6px 16px rgba(0,0,0,0.12);
+}
+
+/* サムネイル */
+.twitch-card-thumbnail {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+/* 情報エリア */
+.twitch-card-info {
+  padding: 12px 16px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* 配信者名 */
+.twitch-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-color-1);
+}
+
+/* 配信タイトル */
+.twitch-card-title {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--text-color-1);
+}
+
+/* ゲーム名 */
+.twitch-card-game {
+  font-size: 11px;
+  color: var(--text-color-2);
+}
+
+/* 視聴者数 */
+.twitch-card-viewers {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9147ff;
+}
+
